@@ -1,9 +1,28 @@
 import React from 'react'
+import Link from 'next/link';
+import { IoBug } from "react-icons/io5";
 
 const Navbar = () => {
-  return (
-    <div className='bg-blue-500 p-4 text-white font-bold'>Navbar</div>
-  )
+    const links = [
+        { label: "Dashboard", href: "/" },
+        { label: "Issues", href: "/issue" },
+    ]
+    return (
+        <nav className='flex space-x-6 border-b mb-5 px-5 h-14 items-center'>
+            <Link href="/"><IoBug /></Link>
+            <ul className='flex space-x-6'>
+                {
+                    links.map((link) =>
+                        <Link key={link.href}
+                            className='text-zinc-500 hover:text-zinc-800 transition-colors'
+                            href={link.href}
+                        >{link.label}</Link>
+                    )
+                }
+
+            </ul>
+        </nav>
+    )
 }
 
 export default Navbar;
